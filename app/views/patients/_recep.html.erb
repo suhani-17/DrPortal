@@ -1,0 +1,40 @@
+<div class="flex-column" style = "height: auto;">
+<h1> Patient List </h1>
+
+<% if flash[:errors] %>
+  <% flash.each do |name,message| %>
+    <p class="text-danger"><%= message%></p>
+  <% end %>
+<% end %>
+
+<div>
+  <table class="table table-info table-striped">
+    <ol class="fs-2">
+      <thead class="table-secondary">
+        <td class="text-center"> Id </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Age </td>
+        <td class="text-center"> Gender </td>
+        <td class="text-center"> Description </td>
+        <td colspan=3 class="text-center"> Action </td>
+      </thead>
+      <% @patients.each do |e| %>
+        <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.name, patient_path(e) %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          <td class="text-center"> <%= e.gender %> </td>
+          <td class="text-center"> <%= e.description %> </td>
+
+          <td class="text-center"><%= button_to "Show",patient_path(e),method: :get, class:"btn-success border-0 rounded-pill shadow px-3 py-2" %></td>
+          <td class="text-center"><%= button_to "Edit",edit_patient_path(e),method: :get, class:"btn-primary border-0 rounded-pill shadow px-3 py-2" %></td>
+          <td class="text-center"><%= button_to "Delete",patient_path(e),method: :delete, class:"btn-danger border-0 rounded-pill shadow px-3 py-2" %></td>
+        </tr>
+      <% end %>
+    </ol>
+  </table>
+</div>
+<div class="d-flex">
+  <%= button_to "Add New Patient", new_patient_path, method: :get ,class:"btn-warning border-0 rounded-pill shadow p-3 m-3" %>
+</div>
+</div>

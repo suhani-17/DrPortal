@@ -1,0 +1,13 @@
+<% if @current_user.present?%>
+
+  <% if @current_user.type.eql?("Doctor")%>
+    <%= render partial: "patients/doc" %>
+  <% else %>
+    <%= render partial: "patients/recep" %>
+  <% end %>
+
+  <%= link_to "Log Out", logout_path %>
+
+<% else %>
+  <%= link_to "Log In", login_path %>
+<% end %>

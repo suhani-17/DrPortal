@@ -1,0 +1,7 @@
+<div class="flex-column" style="height: auto;">
+  <h1> Patient Registration Graph </h1>
+  <div>
+    <%= line_chart @patients_by_day, library: { scales: { xAxes: [{ type: 'time', time: { unit: 'day' } }] } } %>
+  </div>
+  <%= button_to "View all Patients", patients_path,method: :get ,class:"btn-primary border-0 rounded-pill shadow p-2 m-2" %>
+</div>
